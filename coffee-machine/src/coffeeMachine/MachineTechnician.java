@@ -12,4 +12,8 @@ public class MachineTechnician {
         this.coffeeMachine.setCoffeeAvailable(true);
     }
 
+    public void setCoffeePrice(int coffeePrice) {
+        this.coffeeMachine.setCoffeePrice(coffeePrice);
+    }
+
 }

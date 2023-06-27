@@ -1,6 +1,13 @@
 package coffeeMachine;
 
 public class Money {
-    int cents;
+    private int cents;
 
+    public int getCents() {
+        return cents;
+    }
+
+    public void setCents(int cents) {
+        this.cents = cents;
+    }
 }
