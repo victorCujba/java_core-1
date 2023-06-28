@@ -1,6 +1,5 @@
 import coffeeMachine.CoffeeMachine;
 import coffeeMachine.MachineTechnician;
-import coffeeMachine.Money;
 
 public class Main {
 
