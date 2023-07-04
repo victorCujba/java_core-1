@@ -4,7 +4,7 @@ import java.util.List;
 public class BankAccount implements BankAccountOperation {
 
     private double balance;
-    private List<BankMovement> movements;
+    private final List<BankMovement> movements;
 
     public BankAccount() {
         this.balance = 0;

@@ -22,45 +22,54 @@ public class Main {
   public static void main(String[] args) {
 
     BankAccount account = new BankAccount(100);
+    readFromInput(account);
 
+  }
+
+  private static void readFromInput(BankAccount account) {
     Scanner scanner = new Scanner(System.in);
     boolean hasNextInput = true;
-
     while (hasNextInput) {
-      System.out.println("quale operazione vuoi eseguire sul conto?");
-      System.out.println("\t- Per effettuare un versamento premi 'V'");
-      System.out.println("\t- Per effettuare un prelievo premi 'P'");
-      System.out.println("\t- Per verificare il saldo 'S'");
-      System.out.println("\t- Per visualizzare la lista degli 5 ultimi movimenti permi 'M'");
-      System.out.println("\t- Per uscire dal programma inserire 'X'");
-
+      printOpeningPhrases();
       char operation = scanner.next().charAt(0);
-
-      switch (operation) {
-        case 'V':
-          System.out.print("\t- Inserisci l'importo da versare:");
-          double moneyToDeposit = scanner.nextDouble();
-          account.deposit(moneyToDeposit);
-          break;
-        case 'P':
-          System.out.print("\t- Inserisci l'importo da prelevare:");
-          double moneyToWithrdawal = scanner.nextDouble();
-          account.withdrawal(moneyToWithrdawal);
-          break;
-        case 'S':
-          System.out.printf("Il tuo saldo é %s\n", account.getBalance());
-          break;
-        case 'M':
-          System.out.println(account.stringifyLastMovements(5));
-          break;
-        case 'X':
-          hasNextInput = false;
-          break;
-        default:
-          System.out.println("Operazione non riconosciuta.");
-      }
+      hasNextInput = doOperation(account, scanner, hasNextInput, operation);
     }
-
     scanner.close();
+  }
+
+  private static void printOpeningPhrases() {
+    System.out.println("quale operazione vuoi eseguire sul conto?");
+    System.out.println("\t- Per effettuare un versamento premi 'V'");
+    System.out.println("\t- Per effettuare un prelievo premi 'P'");
+    System.out.println("\t- Per verificare il saldo 'S'");
+    System.out.println("\t- Per visualizzare la lista degli 5 ultimi movimenti permi 'M'");
+    System.out.println("\t- Per uscire dal programma inserire 'X'");
+  }
+
+  private static boolean doOperation(BankAccount account, Scanner scanner, boolean hasNextInput, char operation) {
+    switch (operation) {
+      case 'V':
+        System.out.print("\t- Inserisci l'importo da versare:");
+        double moneyToDeposit = scanner.nextDouble();
+        account.deposit(moneyToDeposit);
+        break;
+      case 'P':
+        System.out.print("\t- Inserisci l'importo da prelevare:");
+        double moneyToWithrdawal = scanner.nextDouble();
+        account.withdrawal(moneyToWithrdawal);
+        break;
+      case 'S':
+        System.out.printf("Il tuo saldo é %s\n", account.getBalance());
+        break;
+      case 'M':
+        System.out.println(account.stringifyLastMovements(5));
+        break;
+      case 'X':
+        hasNextInput = false;
+        break;
+      default:
+        System.out.println("Operazione non riconosciuta.");
+    }
+    return hasNextInput;
   }
 }
