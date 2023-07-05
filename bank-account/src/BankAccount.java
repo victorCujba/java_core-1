@@ -3,15 +3,14 @@ import java.util.List;
 
 public class BankAccount implements BankAccountOperation {
 
+    private final int accountNumber;
+    private final String owner;
     private double balance;
     private final List<BankMovement> movements;
 
-    public BankAccount() {
-        this.balance = 0;
-        this.movements = new ArrayList<>();
-    }
-
-    public BankAccount(double balance) {
+    public BankAccount(int accountNumber, String owner, double balance) {
+        this.accountNumber = accountNumber;
+        this.owner = owner;
         this.balance = balance;
         this.movements = new ArrayList<>();
     }
@@ -46,5 +45,18 @@ public class BankAccount implements BankAccountOperation {
             sb.append("\t- ").append(movements.get(i)).append("\n");
         }
         return sb.toString();
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("This bank account with number %s is owned by %s", accountNumber, owner);
     }
 }

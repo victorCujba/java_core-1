@@ -21,20 +21,42 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
 
-    BankAccount account = new BankAccount(100);
-    readFromInput(account);
-
+    Bank bank = new Bank();
+    Integer davideBankAccount = bank.createBankAccount("Davide");
+    chooseBankAccount(bank);
   }
 
-  private static void readFromInput(BankAccount account) {
+  private static void chooseBankAccount(Bank bank) {
     Scanner scanner = new Scanner(System.in);
+    boolean hasNextInput = true;
+    while (hasNextInput) {
+      System.out.println("Gli account disponibili sono:");
+      System.out.println(bank.showBankAccounts());
+      System.out.println(
+          "\t- Per effettuare operazioni su un account inserisci il numero di account: ");
+      System.out.println("\t- Per uscire dal programma inserire il valore '-1'");
+      int accountNumber = scanner.nextInt();
+      if (accountNumber == -1) {
+        hasNextInput = false;
+      } else {
+        BankAccount bankAccount = bank.getBankAccount(accountNumber);
+        if (bankAccount != null) {
+          readFromInput(scanner, bankAccount);
+        } else {
+          System.out.println("Given account number doesn't exits");
+        }
+      }
+    }
+    scanner.close();
+  }
+
+  private static void readFromInput(Scanner scanner, BankAccount account) {
     boolean hasNextInput = true;
     while (hasNextInput) {
       printOpeningPhrases();
       char operation = scanner.next().charAt(0);
       hasNextInput = doOperation(account, scanner, hasNextInput, operation);
     }
-    scanner.close();
   }
 
   private static void printOpeningPhrases() {
@@ -46,7 +68,8 @@ public class Main {
     System.out.println("\t- Per uscire dal programma inserire 'X'");
   }
 
-  private static boolean doOperation(BankAccount account, Scanner scanner, boolean hasNextInput, char operation) {
+  private static boolean doOperation(
+      BankAccount account, Scanner scanner, boolean hasNextInput, char operation) {
     switch (operation) {
       case 'V':
         System.out.print("\t- Inserisci l'importo da versare:");
