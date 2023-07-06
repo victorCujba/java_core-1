@@ -35,4 +35,9 @@ public class MapApplicationUser implements ApplicationUser {
             return null;
         }
     }
+
+    @Override
+    public User getAuthenticatedUser() {
+        return this.authenticatedUser;
+    }
 }
