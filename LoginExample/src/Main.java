@@ -16,6 +16,13 @@
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ApplicationUser applicationUser = new MapApplicationUser();
+        applicationUser.createUser("davide", "12345", Role.ADMIN);
+        applicationUser.createUser("matteo", "67890", Role.USER);
+        applicationUser.createUser("mara", "abcde", Role.EDITOR);
+
+        applicationUser.login("davide", "12345");
+        applicationUser.login("matteo", "12345");
+        applicationUser.login("alessio", "12345");
     }
 }
