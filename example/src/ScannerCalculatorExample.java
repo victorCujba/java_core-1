@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 /*
     Utilizzare lo scanner per
@@ -23,7 +22,15 @@ public class ScannerCalculatorExample {
             if (!nextLine.equals("close")) {
                 if (nextLine.contains("+") || nextLine.contains("*") || nextLine.contains("-") || nextLine.contains("/") ) {
                     char operator = getOperatorFromNextLine(nextLine);
-                    doOperation(nextLine, operator);
+                    try {
+                        doOperation(nextLine, operator);
+                    } catch (NullPointerException e) {
+                        System.out.println("ho catturato una nullpointer");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    } finally {
+                        System.out.println("finally!");
+                    }
                 } else {
                     printNextLine(nextLine);
                 }
@@ -37,10 +44,10 @@ public class ScannerCalculatorExample {
     private static char getOperatorFromNextLine(String nextLine) {
         Pattern pattern = Pattern.compile("");
         Matcher matcher = pattern.matcher(nextLine);
-
+        return 'c';
     }
 
-    private static void doOperation(String nextLine, char operator) {
+    private static void doOperation(String nextLine, char operator) throws Exception {
         int indexOfPlus = nextLine.indexOf(operator);
         String firstOp = nextLine.substring(0, indexOfPlus).trim();
         String secondOp = nextLine.substring(indexOfPlus+1).trim();
@@ -49,16 +56,18 @@ public class ScannerCalculatorExample {
         System.out.printf("La somma dell'operazione %s = %s\n", nextLine, executeOperation(operator, firstIntOp, secondIntOp));
     }
 
-    private static int executeOperation(char operator, int firstIntOp, int secondIntOp) {
+    private static int executeOperation(char operator, int firstIntOp, int secondIntOp) throws Exception {
         switch (operator) {
             case '+':
                 return firstIntOp + secondIntOp;
             case '-':
-                return firstIntOp - secondIntOp:
+                return firstIntOp - secondIntOp;
             case '/':
                 return firstIntOp / secondIntOp;
-            default:
+            case '*':
                 return firstIntOp * secondIntOp;
+            default:
+                throw new Exception("l'operazione inserita non esiste");
         }
     }
 
