@@ -1,4 +1,4 @@
-
+import pojo.Role;
 
 /*
     PARTE 1:
@@ -33,7 +33,18 @@ public class Main {
         ApplicationUser applicationUser = new MapApplicationUser("davide", "12345");
 
         applicationUser.login("davide", "12345");
-        User userWhoNotExists = new User("non-esiste", " ", Role.ADMIN);
-        applicationUser.createUser("gigibau", "abcde", Role.USER);
+        esempioThrow(applicationUser);
+        applicationUser.login("gigibau", "abcde");
+        esempioThrow(applicationUser);
+    }
+
+    private static void esempioThrow(ApplicationUser applicationUser) {
+        try {
+            applicationUser.createUser("gigibau", "abcde", Role.USER);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("effettuo login con davide admin");
+            applicationUser.login("davide", "12345");
+        }
     }
 }

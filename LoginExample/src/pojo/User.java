@@ -1,3 +1,5 @@
+package pojo;
+
 public class User {
 
     private String username;
@@ -24,7 +26,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "pojo.User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +

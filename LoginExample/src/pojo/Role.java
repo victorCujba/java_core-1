@@ -1,3 +1,5 @@
+package pojo;
+
 public enum Role {
 
     USER,

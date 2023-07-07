@@ -1,3 +1,5 @@
+import pojo.Role;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +27,6 @@ public class SurveyManagerImpl implements SurveyManager {
 
     @Override
     public String showAllSurveys() {
-        return null;
+        return surveys.toString();
     }
 }

@@ -1,3 +1,7 @@
+import exceptions.NotAuthorizedException;
+import pojo.Role;
+import pojo.User;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,14 +29,13 @@ public class MapApplicationUser implements ApplicationUser {
     }
 
     @Override
-    public User createUser(String username, String password, Role role) {
+    public User createUser(String username, String password, Role role) throws NotAuthorizedException {
         if (authenticatedUser.getRole().equals(Role.ADMIN)) {
             User user = new User(username, password, role);
             System.out.printf("L'utente %s é stato creato con successo da %s\n", user, authenticatedUser.getUsername());
             return userDatabase.put(username, user);
         } else {
-            System.out.println("L'utente attualmente autenticato non ha i permessi necessari per creare un altro utente");
-            return null;
+            throw new NotAuthorizedException(authenticatedUser, "createUser");
         }
     }
 

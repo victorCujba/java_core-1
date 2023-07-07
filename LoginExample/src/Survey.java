@@ -1,3 +1,5 @@
+import pojo.User;
+
 public class Survey {
 
     private final User owner;
@@ -14,5 +16,13 @@ public class Survey {
 
     public String getText() {
         return text;
+    }
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "owner=" + owner +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
