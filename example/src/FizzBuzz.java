@@ -39,4 +39,8 @@ public class FizzBuzz {
         }
     }
 
+    void esempio() {
+        fizzBuzz(5);
+    }
+
 }
