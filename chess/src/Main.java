@@ -1,13 +1,19 @@
 import chessboard.Chessboard;
+import pieces.Color;
+import pieces.Pawn;
 import pieces.Piece;
+import pieces.Rook;
 
 public class Main {
     public static void main(String[] args) {
         Chessboard chessboard = new Chessboard();
-        chessboard.setUp();
+
+        Piece p = new Rook(7, 2, Color.BLACK);
+        Piece p1 = new Pawn(3, 2, Color.BLACK);
+        chessboard.addPiece(p);
+//        chessboard.addPiece(p1);
         chessboard.show();
-        chessboard.addMovement(2, 1, (Piece p) -> p.move(3, 1));
-        chessboard.addMovement(8, 2, (Piece p) -> p.move(6, 3));
+        chessboard.addMovement(p, 2, 2);
         chessboard.startGame();
 
     }

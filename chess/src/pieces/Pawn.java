@@ -7,11 +7,12 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean move(int x, int y) {
-        if (!((this.y == y) && (Math.abs(this.x - x) == 1))) {
-            return false;
-        }
-        return super.move(x, y);
+    public boolean canMove(int x, int y) {
+        return allowedStepForward(x, y) && super.canMove(x, y);
+    }
+
+    private boolean allowedStepForward(int x, int y) {
+        return (this.y == y) && (Math.abs(this.x - x) == 1);
     }
 
     @Override

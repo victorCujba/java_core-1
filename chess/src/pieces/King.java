@@ -7,11 +7,12 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean move(int x, int y) {
-        if ( !(Math.abs(this.x - x) <= 1) || (Math.abs(this.y - y) <= 1) ){
-            return false;
-        }
-        return super.move(x, y);
+    public boolean canMove(int x, int y) {
+        return allowedOneStep(x, y) && super.canMove(x, y);
+    }
+
+    private boolean allowedOneStep(int x, int y) {
+        return (Math.abs(this.x - x) <= 1) || (Math.abs(this.y - y) <= 1);
     }
 
     @Override

@@ -5,18 +5,24 @@ import pieces.Piece;
 public class PieceBehaviourPair {
 
     private final Piece piece;
-    private final Behaviour behaviour;
+    private final int x;
+    private final int y;
 
-    public PieceBehaviourPair(Piece piece, Behaviour behaviour) {
+    public PieceBehaviourPair(Piece piece, int x, int y) {
         this.piece = piece;
-        this.behaviour = behaviour;
+        this.x = x;
+        this.y = y;
     }
 
     public Piece getPiece() {
         return piece;
     }
 
-    public Behaviour getBehaviour() {
-        return behaviour;
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

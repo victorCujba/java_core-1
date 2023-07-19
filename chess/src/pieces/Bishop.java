@@ -8,11 +8,12 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean move(int x, int y) {
-        if ( !(Math.abs(this.x - x) == Math.abs(this.y - y)) ){
-            return false;
-        }
-        return super.move(x, y);
+    public boolean canMove(int x, int y) {
+        return allowedDiagonal(x, y) && super.canMove(x, y);
+    }
+
+    private boolean allowedDiagonal(int x, int y) {
+        return Math.abs(this.x - x) == Math.abs(this.y - y);
     }
 
     @Override

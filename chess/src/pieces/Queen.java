@@ -7,12 +7,9 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean move(int x, int y) {
-        if (allowedCardinal(x, y) && allowedDiagonal(x, y)) {
-            return super.move(x, y);
-        } else {
-            return false;
-        }
+    public boolean canMove(int x, int y) {
+        return (allowedCardinal(x, y) || allowedDiagonal(x, y)) &&
+                super.canMove(x, y);
     }
 
     private boolean allowedDiagonal(int x, int y) {
@@ -25,7 +22,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public char getChessboardId(){
+    public char getChessboardId() {
         if (this.color == Color.BLACK) {
             return '\u265A';
         } else {

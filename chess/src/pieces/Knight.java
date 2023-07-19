@@ -7,12 +7,9 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean move(int x, int y) {
-        if (allowedLongXShortY(x, y) || allowedShortXLongY(x, y)) {
-            return super.move(x, y);
-        } else {
-            return false;
-        }
+    public boolean canMove(int x, int y) {
+        return (allowedLongXShortY(x, y) || allowedShortXLongY(x, y)) &&
+                super.canMove(x, y);
     }
 
     private boolean allowedShortXLongY(int x, int y) {
@@ -24,7 +21,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public char getChessboardId(){
+    public char getChessboardId() {
         if (this.color == Color.BLACK) {
             return '\u265E';
         } else {

@@ -12,14 +12,8 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public boolean move(int x, int y) {
-        if (!(checkBoundaries(x) && checkBoundaries(y))) {
-            return false;
-        }
-        System.out.printf("Moving %s from position %s:%s to position %s:%s\n", this.getClass().getName(), this.x, this.y, x, y);
-        this.x = x;
-        this.y = y;
-        return true;
+    public boolean canMove(int x, int y) {
+        return checkBoundaries(x) && checkBoundaries(y);
     }
 
     public abstract char getChessboardId();
@@ -34,5 +28,13 @@ public abstract class Piece {
 
     public int getY() {
         return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
     }
 }
