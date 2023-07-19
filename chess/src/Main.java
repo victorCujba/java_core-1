@@ -1,4 +1,5 @@
 import chessboard.Chessboard;
+import pieces.Bishop;
 import pieces.Color;
 import pieces.Pawn;
 import pieces.Piece;
@@ -8,12 +9,12 @@ public class Main {
     public static void main(String[] args) {
         Chessboard chessboard = new Chessboard();
 
-        Piece p = new Rook(7, 2, Color.BLACK);
-        Piece p1 = new Pawn(3, 2, Color.BLACK);
+        Piece r = new Bishop(4, 6, Color.BLACK);
+        Piece p = new Pawn(3, 7, Color.BLACK);
+        chessboard.addPiece(r);
         chessboard.addPiece(p);
-//        chessboard.addPiece(p1);
         chessboard.show();
-        chessboard.addMovement(p, 2, 2);
+        chessboard.addMovement(r, 3, 7);
         chessboard.startGame();
 
     }

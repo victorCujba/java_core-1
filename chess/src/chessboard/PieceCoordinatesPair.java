@@ -2,13 +2,13 @@ package chessboard;
 
 import pieces.Piece;
 
-public class PieceBehaviourPair {
+public class PieceCoordinatesPair {
 
     private final Piece piece;
     private final int x;
     private final int y;
 
-    public PieceBehaviourPair(Piece piece, int x, int y) {
+    public PieceCoordinatesPair(Piece piece, int x, int y) {
         this.piece = piece;
         this.x = x;
         this.y = y;
